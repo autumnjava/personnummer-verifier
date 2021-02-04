@@ -13,19 +13,38 @@ export default {
   data() {
     return {
       personNr: "",
-      isActive: false
+      isActive: false,
     }
   },
   computed:  {
     input()  {
-      let regexList = [/^\d{10}$/, /^\d{12}$/, /^\d{6}\-\d{4}$/, /^\d{8}\-\d{4}$/]; 
-      return this.isActive = regexList.some(rx => rx.test(this.personNr));
-    }
+      let regexList = [/^\d{10}$/, /^\d{12}$/, /^\d{6}\-\d{4}$/, /^\d{8}\-\d{4}$/];
+      this.isActive = regexList.some(rx => rx.test(this.personNr));
+      if(this.isActive){
+          this.checkDate(this.personNr);
+
+         //return this.isActive = true ? dateConverter == true : false ;
+      }
+    },
   },
   methods:{
     logIn(){
       alert("Välkommen in");
-    }
+    },
+    checkDate(personNr){
+      if(personNr.length === 13 || this.personNr.length === 12 ){
+        let yyyy = personNr.substring(0, 4);
+        let mm = personNr.substring (4,6);
+        let dd = personNr.substring(6,8);
+        console.log(yyyy, mm, dd, 'hey long')
+      } else {
+        let yy = personNr.substring(0, 2);
+        let mm = personNr.substring (2,4);
+        let dd = personNr.substring(4,6);
+        console.log(yy, mm, dd, 'hey short')
+      }
+    },
+    
   }
 }
 </script>
