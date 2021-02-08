@@ -47,7 +47,7 @@ export default {
     },
 
     checkDate(yyyy, mm, dd){
-      if(yyyy < this.currentYear - 150 || mm == 0 || mm > 12)
+      if(yyyy < this.currentYear - 150 || mm == 0 || mm > 12) //assume no one is older than 150 years old
           return false;
 
         // Adjust for leap years
