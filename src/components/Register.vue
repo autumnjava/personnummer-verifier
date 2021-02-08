@@ -33,10 +33,12 @@ export default {
     },
     checkDate(personNr){
       if(personNr.length === 13 || this.personNr.length === 12 ){
+        if(personNr.substring(0, 2) === '19'  || personNr.substring(0, 2) === '20'){
         let yyyy = personNr.substring(0, 4);
         let mm = personNr.substring (4,6);
         let dd = personNr.substring(6,8);
         console.log(yyyy, mm, dd, 'hey long')
+        }
       } else {
         let yy = personNr.substring(0, 2);
         let mm = personNr.substring (2,4);
