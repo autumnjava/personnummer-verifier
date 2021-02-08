@@ -14,40 +14,56 @@ export default {
     return {
       personNr: "",
       isActive: false,
+      monthLength: [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ],
+      currentYear: new Date().getFullYear()
     }
   },
   computed:  {
     input()  {
-      let regexList = [/^\d{10}$/, /^\d{12}$/, /^\d{6}\-\d{4}$/, /^\d{8}\-\d{4}$/];
+      let regexList = [/^\d{6}\-?\d{4}$/, /^\d{8}\-?\d{4}$/];
       this.isActive = regexList.some(rx => rx.test(this.personNr));
-      if(this.isActive){
-          this.checkDate(this.personNr);
-
-         //return this.isActive = true ? dateConverter == true : false ;
-      }
+      if(this.isActive)
+         return this.isActive = true ? this.convertToDate(this.personNr) : false;
     },
-  },
+  }, //end of computed
   methods:{
     logIn(){
       alert("Välkommen in");
     },
-    checkDate(personNr){
+    convertToDate(personNr){
       if(personNr.length === 13 || this.personNr.length === 12 ){
-        if(personNr.substring(0, 2) === '19'  || personNr.substring(0, 2) === '20'){
         let yyyy = personNr.substring(0, 4);
         let mm = personNr.substring (4,6);
         let dd = personNr.substring(6,8);
-        console.log(yyyy, mm, dd, 'hey long')
-        }
+
+        return this.checkDate(yyyy, mm, dd)
       } else {
-        let yy = personNr.substring(0, 2);
+        let yyyy = 19 + personNr.substring(0, 2);
         let mm = personNr.substring (2,4);
         let dd = personNr.substring(4,6);
-        console.log(yy, mm, dd, 'hey short')
+        
+        return this.checkDate(yyyy, mm, dd)
       }
     },
-    
-  }
+
+    checkDate(yyyy, mm, dd){
+      if(yyyy < this.currentYear - 150 || mm == 0 || mm > 12)
+          return false;
+
+        // Adjust for leap years
+        if(yyyy % 400 == 0 || (yyyy % 100 != 0 && yyyy % 4 == 0))
+        this.monthLength[1] = 29;
+
+        //extra check to see if the date is in the future
+        let date = new Date(yyyy, mm-1, dd)
+        let today = Date.now();
+        if(date > today)
+        return false;
+
+        // Check the range of the day
+        return dd > 0 && dd <= this.monthLength[mm - 1];
+    }
+  } //end of methods
 }
 </script>
 
