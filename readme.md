@@ -1,7 +1,7 @@
-## Regex test
+## Social-security number verification
 <hr>
 
-This app would allow user to "login" if correct social-security number is entered. Note that it also checks if the date is correct.
+This app would allow user to "log in" if correct social-security number is entered. The Luhn algorithm is not used in this example.
 
 Allowed formats:
 * YYYYMMDD-XXXX 
@@ -14,6 +14,7 @@ Allowed formats:
 ### Features:
 * Regex
 * Date checker
+* Vue
 
 <hr>
 
