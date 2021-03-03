@@ -89,7 +89,7 @@ form > button {
   text-decoration: none;
   width: 100%;
   opacity: 50%;
-  cursor: pointer;
+  cursor: default;
   border-radius: 20px;
   font-size: medium;
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -97,5 +97,6 @@ form > button {
 
 .active {
 opacity: 100%;
+cursor: pointer;
 }
 </style>
