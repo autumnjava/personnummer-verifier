@@ -26,5 +26,4 @@ Allowed formats:
 
 <img width="540" src="test.gif">
 (note that 2191-01-24 is the future, and 91-01-32 simply does not exist)
-
 <hr>
